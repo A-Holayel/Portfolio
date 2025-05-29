@@ -94,6 +94,34 @@
             letter-spacing: -0.5px;
         }
         
+        .intro h1 .portfolio-text {
+            display: block;
+            font-size: 1.9rem;
+            color: var(--primary);
+            margin-top: 5px;
+            font-weight: 500;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .intro h1 .portfolio-text::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .intro h1 .portfolio-text:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
         .intro p {
             font-size: 1.2rem;
             color: var(--gray);
@@ -101,6 +129,93 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+        
+        .featured-project {
+            background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
+            padding: 50px;
+            border-radius: var(--gallery-radius);
+            margin: 60px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-project::before {
+            content: '✨';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            opacity: 0.5;
+        }
+        
+        .featured-project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .featured-project h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .featured-project h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .featured-project p {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .featured-project a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 15px 30px;
+            background-color: var(--primary);
+            border-radius: 100px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .featured-project a:hover {
+            background-color: #0b7a6e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 148, 136, 0.3);
+        }
+        
+        .featured-project a svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .featured-project a:hover svg {
+            transform: translateX(5px);
         }
         
         .gallery {
@@ -380,6 +495,19 @@
                 width: 36px;
                 height: 36px;
             }
+            
+            .featured-project {
+                padding: 40px 20px;
+                margin: 40px 20px;
+            }
+            
+            .featured-project h2 {
+                font-size: 1.8rem;
+            }
+            
+            .featured-project p {
+                font-size: 1.1rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -469,13 +597,26 @@
     <main class="main-content">
         <div class="container">
             <section class="intro">
-                <h1>AbdelRhman M. Holayel<br> Portfolio</h1>
+                <h1>AbdelRhman M. Holayel<br><span class="portfolio-text">Portfolio</span></h1>
                 <p>Crafting ideas into visual stories</p>
             </section>
             
             <div class="gallery">
                 <!-- Gallery items will be dynamically generated -->
             </div>
+        </div>
+        
+        <div class="featured-project">
+            <h2>Featured Project</h2>
+            <p>Designed and developed the official website for the 5th International Physical Therapy Conference at South Valley University.</p>
+            <a href="https://iptconference.com/" target="_blank">
+                Visit Website
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </a>
         </div>
         
         <section class="contact-section">
