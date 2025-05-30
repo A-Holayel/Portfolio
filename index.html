@@ -425,6 +425,7 @@
             transform: scale(0.9);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: zoom-out;
         }
         
         .lightbox.active img {
@@ -733,19 +734,40 @@
         document.addEventListener('DOMContentLoaded', () => {
             generateGallery();
             
-            // Close lightbox when clicked outside
+            // Close lightbox when clicked outside or on image
             const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            function openLightbox() {
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
             lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    lightbox.classList.remove('active');
+                if (e.target === lightbox || e.target === lightboxImg) {
+                    closeLightbox();
                 }
             });
             
             // Close lightbox with Escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
-                    lightbox.classList.remove('active');
+                    closeLightbox();
                 }
+            });
+            
+            // Update gallery item click handlers
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const imgSrc = item.querySelector('img').src;
+                    lightboxImg.src = imgSrc;
+                    openLightbox();
+                });
             });
             
             // Scroll to top functionality
